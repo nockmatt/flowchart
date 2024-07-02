@@ -99,6 +99,8 @@ export default {
   methods: {
     // flowchart inline SVG loaded
     flowchartReady(element) {
+      console.log("Flowchart ready");
+
       this.flowchartContainer = this.$refs.container;
       this.flowchartElement = element;
 
@@ -180,6 +182,7 @@ export default {
 
     // populate flowchartStore’s flowchartNodes object with nodes from svg source
     collectNodes() {
+      console.log("Started collecting nodes");
       const nodes = [...this.flowchartElement.querySelectorAll('[id^=n-]')];
       const primaryNodes = nodes.filter(node => !isNaN(node.id.slice(-1)));
       const alternateNodes = nodes.filter(node => !primaryNodes.includes(node));
@@ -480,6 +483,7 @@ export default {
   },
 
   created() {
+    console.log("Created flowchart");
     // d3 scaleLinear method to map window dimensions to min/max scale thresholds
     this.scaleFromWindowSideLength = scaleLinear(this.scaleParameters.domain, this.scaleParameters.range).clamp(true);
   }
